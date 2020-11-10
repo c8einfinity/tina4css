@@ -1,0 +1,12 @@
+{   "name": "andrevanzuydam/tina4css",
+    "description": "Tina4 CSS",
+    "license": "MIT",
+    "autoload": {
+        "files": [
+            "index.php"
+        ]
+    },
+    "require": {
+        "scssphp/scssphp": "^1.4"
+    }
+}
