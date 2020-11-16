@@ -10,14 +10,11 @@ class Tina4CSS {
 
     // Function to compile SCSS to CSS file using scssphp library
     public function compile($path, $prefix){
-
-
         //Check if the directory exists
-        $path = "./vendor/andrevanzuydam/tina4css/src/scss";
         if (!is_dir($path)) {
             throw new \RuntimeException("Directory '" . $path . "' does not exist");
         }
-        //Step through the tina4 scss files and do the relevant compiles.
+        //Step through the scss files and do the relevant compiles.
         $scss = (new \ScssPhp\ScssPhp\Compiler());
         $cssContent = "";
         foreach (scandir($path) as $file) {
@@ -29,6 +26,7 @@ class Tina4CSS {
                 } else {
                     if (substr($file, 0, strpos($file, ".")+1) == "scss"){
                         $cssContent .= $scss->compile($scssCode);
+                        echo $file . PHP_EOL;
                     }
                 }
             }
@@ -52,7 +50,7 @@ class Tina4CSS {
                 throw new \RuntimeException(sprintf('Directory "%s" was not created', "./src/assets/css"));
             }
         }
-        if (!file_exists("./src/assets/css/default.css")) {
+        if (!file_exists("./src/assets/css/default-base.css")) {
            return true;
         } else {
             return false;
