@@ -40,14 +40,14 @@ class Tina4CSS {
         $scss = (new \ScssPhp\ScssPhp\Compiler());
         $cssContent = "";
         foreach (scandir($path) as $file) {
-            if ($file !== '.' && $file !== '..') {
+            if ($file !== '.' && $file !== '..' && $file[0] !== '_') {
                 $scssCode = file_get_contents($path . DIRECTORY_SEPARATOR . $file);
                 // If a colors specific scss file exists it compiles that as a separate css file
                 if ($file == "colors.scss"){
                     $cssColors = $scss->compile($scssCode);
                     file_put_contents("./src/assets/css/".$prefix."-colors.css", $cssColors );
                 } else {
-                    if (substr($file, 0, strpos($file, ".")+1) == "scss"){
+                    if (substr($file,strpos($file, ".")+1) == "scss"){
                         $cssContent .= $scss->compile($scssCode);
                     }
                 }

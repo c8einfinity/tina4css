@@ -1,30 +1,10 @@
 <?php
-
-//Some code to compile scss
-//$scss = (new \ScssPhp\ScssPhp\Compiler());
+// Compile the SCSS if required
 $scss = (new Tina4CSS());
 if ($scss->yesCompile()){
     $scss->compile("./vendor/andrevanzuydam/tina4css/src/scss", "tina4css");
     $scss->compile("./src/scss", "default");
 }
 
-
-/*
-
-if (!file_exists("./src/assets/css")) {
-    if (!mkdir("./src/assets/css", 0777, true) && !is_dir("./src/assets/css")) {
-        throw new \RuntimeException(sprintf('Directory "%s" was not created', "./src/assets/css"));
-    }
-}
-
-$scssContent = file_get_contents(__DIR__.DIRECTORY_SEPARATOR."src".DIRECTORY_SEPARATOR."scss".DIRECTORY_SEPARATOR."colors.scss");
-$scssContent .= file_get_contents(__DIR__.DIRECTORY_SEPARATOR."src".DIRECTORY_SEPARATOR."scss".DIRECTORY_SEPARATOR."base.scss");
-$css = $scss->compile($scssContent);
-if (!file_exists("./src/assets/css/default.css")) {
-    file_put_contents("./src/assets/css/default.css", $css );
-}
-*/
-//see if we find any other scss files and add then to the mix
-
-
+// Add Tina4CSS as a module to Tina4
 \Tina4\Module::addModule("Tina4CSS", "1.0.0", "Tina4CSS");
