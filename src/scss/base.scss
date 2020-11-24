@@ -1,3 +1,4 @@
-div {
-  color : var(--main-bg-color);
+p {
+  background-color: var(--color-main-lighter);
+  border: 5px outset var(--color-main-darker);
 }

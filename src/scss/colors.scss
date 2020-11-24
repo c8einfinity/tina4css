@@ -1,5 +1,29 @@
+/* @import "../mixins"; */
 
-$bgcolor: pink;
-:root {
-  --main-bg-color: $bgcolor;
+/**
+  Mixin color-pal creates 5 CSS color variables
+  $name - you can build a color palette using different names creating a number of color profiles
+  this mixin color-pal uses the hue, saturation, lightness color system to enable intuitive quick changes
+  $hue - hue
+  $sat - saturation
+  $lit - lightness. The 5 colors are created using 10% and 20% above and below the lit value
+ */
+@mixin color-pal ($name, $hue, $sat, $lit){
+  --color-#{$name}-darker: hsl(#{$hue}, #{percentage($sat)}, #{percentage(#{$lit}-0.2)});
+  --color-#{$name}-dark: hsl(#{$hue}, #{percentage($sat)}, #{percentage(#{$lit}-0.1)});
+  --color-#{$name}: hsl(#{$hue}, #{percentage($sat)}, #{percentage($lit)});
+  --color-#{$name}-light: hsl(#{$hue}, #{percentage($sat)}, #{percentage(#{$lit}+0.1)});
+  --color-#{$name}-lighter: hsl(#{$hue}, #{percentage($sat)}, #{percentage(#{$lit}+0.2)});
 }
+
+/*
+  Main color system
+  Other color systems can be added to create a fuller color pallette
+  Just use the color-pal mixin, use a different name and variables
+*/
+
+:root {
+  @include color-pal("main",180,0.5,0.5)
+}
+
+
