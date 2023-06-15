@@ -12,7 +12,7 @@ class Tina4CSS {
     public function compile($path, $prefix){
         //Check if the directory exists
         if (!is_dir($path)) {
-            throw new \RuntimeException("Directory '" . $path . "' does not exist");
+            return;
         }
         //Step through the scss files and do the relevant compiles.
         $scss = (new \ScssPhp\ScssPhp\Compiler());
